@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Knowledge Quiz Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Section -->
+        <section id="welcome-section" class="active-section">
+            <div class="welcome-card">
+                <h1><i class="fas fa-moon"></i> Islamic Knowledge Quiz</h1>
+                <div class="input-group">
+                    <input type="text" id="user-name" placeholder="Enter your name" required>
+                    <input type="email" id="user-email" placeholder="Enter your email" required>
+                    <select id="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <button onclick="startQuiz()" class="start-btn">
+                    <i class="fas fa-play"></i> Start Quiz
+                </button>
+            </div>
+        </section>
+
+        <!-- Category Selection -->
+        <section id="category-section" class="hidden">
+            <h2>Choose Your Category</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="selectCategory('aqeedah')">
+                    <i class="fas fa-star"></i>
+                    <h3>Aqeedah</h3>
+                </div>
+                <div class="category-card" onclick="selectCategory('prophet')">
+                    <i class="fas fa-mosque"></i>
+                    <h3>Prophet</h3>
+                </div>
+                <div class="category-card" onclick="selectCategory('solat')">
+                    <i class="fas fa-pray"></i>
+                    <h3>Solat</h3>
+                </div>
+                <div class="category-card" onclick="selectCategory('fiqh')">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Fiqh</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz-section" class="hidden">
+            <div class="quiz-container">
+                <div class="progress-bar">
+                    <div id="progress"></div>
+                </div>
+                <h2 id="question"></h2>
+                <div id="options" class="options-container"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results-section" class="hidden">
+            <div class="results-card" id="results-content">
+                <h2>Quiz Results</h2>
+                <div class="result-details">
+                    <p>Name: <span id="result-name"></span></p>
+                    <p>Category: <span id="result-category"></span></p>
+                    <p>Score: <span id="result-score"></span></p>
+                    <div class="progress-circle">
+                        <div class="progress-value">0%</div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button onclick="downloadResults()" class="download-btn">
+                        <i class="fas fa-download"></i> Download Results
+                    </button>
+                    <button onclick="retakeQuiz()" class="retake-btn">
+                        <i class="fas fa-redo"></i> Take Another Quiz
+                    </button>
+                </div>
+                <div class="attribution">
+                    Built and compiled by Abu Ayman "Saheed Abdulmatin"<br>
+                    Exceptionalways Creative Studies
+                </div>
+            </div>
+        </section>
+
+        <section id="admin-section" class="hidden">
+            <div class="admin-card">
+                <h2>Quiz Participants</h2>
+                <div class="search-box">
+                    <input type="text" id="search-participant" placeholder="Search by name or email">
+                </div>
+                <div class="participants-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Gender</th>
+                                <th>Category</th>
+                                <th>Score</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="participants-list">
+                            <!-- Participants will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="admin-controls">
+                    <button onclick="exportToCSV()" class="export-btn">
+                        <i class="fas fa-download"></i> Export to CSV
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
